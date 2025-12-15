@@ -388,7 +388,7 @@ export const SAMPLE_FLASHCARDS_DB: Flashcard[] = [
   { id: 'fc_ifrs17_10', moduleId: 'm_ifrs17', taxonomy: 'Remember', front: 'Variable Fee Approach (VFA)?', back: 'Mandatory for direct participating contracts (policyholders share in returns of underlying items). CSM absorbs variability of the entity\'s share.' },
 ];
 
-const SAMPLE_QUIZ_DB: QuizQuestion[] = [
+export const SAMPLE_QUIZ_DB: QuizQuestion[] = [
   // --- IAS 1 (m_ias1) ---
   { id: 'q_ias1_01', moduleId: 'm_ias1', taxonomy: 'Analyze', question: 'Long-term loan covenant breached before year-end. Bank waives breach AFTER year-end. Classification?', options: ['Non-current', 'Current', 'Equity', 'Disclose only'], correctAnswer: 1, explanation: 'Current. The right to defer settlement must exist AT the reporting date. Post-year-end waiver is non-adjusting.' },
   { id: 'q_ias1_02', moduleId: 'm_ias1', taxonomy: 'Remember', question: 'Which item is recognized in Other Comprehensive Income (OCI)?', options: ['Investment Property Gain (FV Model)', 'Revaluation Gain on PPE', 'Trading Inventory Gain', 'Interest Income'], correctAnswer: 1, explanation: 'Revaluation gains on PPE (IAS 16) go to OCI. Investment Property FV gains (IAS 40) go to P&L.' },
@@ -774,7 +774,7 @@ const SAMPLE_QUIZ_DB: QuizQuestion[] = [
   { id: 'q_ifrs17_10', moduleId: 'm_ifrs17', taxonomy: 'Evaluate', question: 'Variable Fee Approach applies to?', options: ['Term Life', 'Car Insurance', 'Unit-linked Contracts (Direct Participation)', 'Reinsurance'], correctAnswer: 2, explanation: 'Applies to insurance contracts with direct participation features where policyholders share in the returns of a pool of underlying items.' },
 ];
 
-export const SAMPLE_PRACTICE_QUESTIONS: PracticeQuestion[] = [
+const SAMPLE_PRACTICE_QUESTIONS: PracticeQuestion[] = [
   {
     id: 'pq_01',
     title: 'Gamma Co (IFRS 15)',
