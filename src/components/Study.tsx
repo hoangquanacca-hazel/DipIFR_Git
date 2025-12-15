@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MODULES } from '../constants';
-import { dataService } from '../services/dataService';
+import { getFlashcards, getQuizQuestions } from '../services/dataService';
 import { ChevronRight, ChevronLeft, RotateCw, CheckCircle, XCircle, ArrowLeft, Filter, BookOpen, Loader2, Award } from 'lucide-react';
 import { Module, Flashcard, QuizQuestion, User } from '../types';
 
@@ -33,17 +33,29 @@ export const Study: React.FC<StudyProps> = ({ user, onUpdateProgress }) => {
   });
 
   // Fetch data when module activates
+ // Fetch data when module activates
   useEffect(() => {
     if (activeModule) {
       const loadData = async () => {
         setLoading(true);
         try {
-          const [fc, quiz] = await Promise.all([
-            dataService.getFlashcards(activeModule),
-            dataService.getQuiz(activeModule)
-          ]);
-          setFlashcards(fc);
+          // --- SỬA ĐOẠN NÀY: Gọi hàm trực tiếp ---
+          console.log("🚀 Study.tsx: Đang lấy dữ liệu cho", activeModule.id);
+          const cards = getFlashcards(activeModule.id);
+          const quiz = getQuizQuestions(activeModule.id);
+          
+          setFlashcards(cards);
           setQuizQuestions(quiz);
+          // ---------------------------------------
+        } catch (error) {
+          console.error("Failed to load module data:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      loadData();
+    }
+  }, [activeModule]);
         } catch (e) {
           console.error("Failed to load study data");
         } finally {
