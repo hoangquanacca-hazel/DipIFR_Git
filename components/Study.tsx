@@ -332,3 +332,6 @@ export const Study: React.FC<StudyProps> = ({ user, onUpdateProgress }) => {
       </div>
     );
   };
+
+
+  
