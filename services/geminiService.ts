@@ -74,7 +74,14 @@ export const getGeminiResponse = async (userMessage: string, context?: UserConte
       }
     });
 
-    return response.text || "I couldn't generate a response. Please try again.";
+   // Lấy dữ liệu thô từ AI
+    const rawText = response.text || "";
+    
+    // BÓC VỎ: Xóa bỏ các ký tự ```json và ``` thừa thãi
+    const cleanText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
+
+    // Trả về dữ liệu sạch
+    return cleanText || "I couldn't generate a response. Please try again.";
   } catch (error) {
     console.error("Gemini API Error:", error);
     return "Sorry, I'm having trouble connecting to the knowledge base right now. Please check your internet connection and API Key.";
