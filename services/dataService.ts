@@ -843,16 +843,6 @@ const SAMPLE_MOCK_EXAMS: MockExamDef[] = [
   }
 ];
 
-// --- DÁN ĐOẠN NÀY VÀO CUỐI FILE dataService.ts ---
-
-export const getFlashcards = (moduleId: string): Flashcard[] => {
-  // Kiểm tra an toàn xem biến có tồn tại không
-  if (typeof SAMPLE_FLASHCARDS_DB === 'undefined') return [];
-  
-  const results = SAMPLE_FLASHCARDS_DB.filter(item => item.moduleId === moduleId);
-  console.log(`🕵️ Lấy Flashcard cho ${moduleId}: Tìm thấy ${results.length}`);
-  return results;
-};
 
   getPracticeQuestions: async (): Promise<PracticeQuestion[]> => {
     await new Promise(resolve => setTimeout(resolve, 300));
