@@ -333,5 +333,5 @@ export const Study: React.FC<StudyProps> = ({ user, onUpdateProgress }) => {
     );
   };
 
-
+// Update fix Vercel deploy v2
   
