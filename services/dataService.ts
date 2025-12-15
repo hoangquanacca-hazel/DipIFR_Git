@@ -854,14 +854,6 @@ export const getFlashcards = (moduleId: string): Flashcard[] => {
   return results;
 };
 
-export const getQuizQuestions = (moduleId: string): QuizQuestion[] => {
-  // Kiểm tra an toàn
-  if (typeof SAMPLE_QUIZ_DB === 'undefined') return [];
-
-  const results = SAMPLE_QUIZ_DB.filter(item => item.moduleId === moduleId);
-  console.log(`🕵️ Lấy Quiz cho ${moduleId}: Tìm thấy ${results.length}`);
-  return results;
-};
   getPracticeQuestions: async (): Promise<PracticeQuestion[]> => {
     await new Promise(resolve => setTimeout(resolve, 300));
     return SAMPLE_PRACTICE_QUESTIONS;
@@ -871,25 +863,6 @@ export const getQuizQuestions = (moduleId: string): QuizQuestion[] => {
     await new Promise(resolve => setTimeout(resolve, 300));
     return SAMPLE_MOCK_EXAMS;
   }
-};
-// --- BẮT BUỘC PHẢI CÓ ĐOẠN NÀY Ở CUỐI FILE ---
-
-export const getFlashcards = (moduleId: string): Flashcard[] => {
-  // Kiểm tra xem kho dữ liệu có tồn tại không
-  if (typeof SAMPLE_FLASHCARDS_DB === 'undefined') {
-    console.error("Lỗi: Không tìm thấy biến SAMPLE_FLASHCARDS_DB");
-    return [];
-  }
-  return SAMPLE_FLASHCARDS_DB.filter(item => item.moduleId === moduleId);
-};
-
-export const getQuizQuestions = (moduleId: string): QuizQuestion[] => {
-  // Kiểm tra xem kho dữ liệu có tồn tại không
-  if (typeof SAMPLE_QUIZ_DB === 'undefined') {
-    console.error("Lỗi: Không tìm thấy biến SAMPLE_QUIZ_DB");
-    return [];
-  }
-  return SAMPLE_QUIZ_DB.filter(item => item.moduleId === moduleId);
 };
 // --- ĐOẠN CODE "CHIỀU HƯ" VERCEL ---
 // Vì Study.tsx cũ đòi hàm này, nên ta tạo ra cho nó vui lòng
