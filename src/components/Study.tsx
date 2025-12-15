@@ -39,25 +39,16 @@ export const Study: React.FC<StudyProps> = ({ user, onUpdateProgress }) => {
       const loadData = async () => {
         setLoading(true);
         try {
-          // --- SỬA ĐOẠN NÀY: Gọi hàm trực tiếp ---
           console.log("🚀 Study.tsx: Đang lấy dữ liệu cho", activeModule.id);
+          
+          // Gọi hàm lấy dữ liệu trực tiếp từ dataService
           const cards = getFlashcards(activeModule.id);
           const quiz = getQuizQuestions(activeModule.id);
           
           setFlashcards(cards);
           setQuizQuestions(quiz);
-          // ---------------------------------------
         } catch (error) {
           console.error("Failed to load module data:", error);
-        } finally {
-          setLoading(false);
-        }
-      };
-      loadData();
-    }
-  }, [activeModule]);
-        } catch (e) {
-          console.error("Failed to load study data");
         } finally {
           setLoading(false);
         }
