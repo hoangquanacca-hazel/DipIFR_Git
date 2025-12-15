@@ -891,3 +891,16 @@ export const getQuizQuestions = (moduleId: string): QuizQuestion[] => {
   }
   return SAMPLE_QUIZ_DB.filter(item => item.moduleId === moduleId);
 };
+// --- ĐOẠN CODE "CHIỀU HƯ" VERCEL ---
+// Vì Study.tsx cũ đòi hàm này, nên ta tạo ra cho nó vui lòng
+
+export const getFlashcards = (moduleId: string) => {
+  // Kiểm tra biến có tồn tại không để tránh lỗi
+  const db = (typeof SAMPLE_FLASHCARDS_DB !== 'undefined') ? SAMPLE_FLASHCARDS_DB : [];
+  return db.filter(item => item.moduleId === moduleId);
+};
+
+export const getQuizQuestions = (moduleId: string) => {
+  const db = (typeof SAMPLE_QUIZ_DB !== 'undefined') ? SAMPLE_QUIZ_DB : [];
+  return db.filter(item => item.moduleId === moduleId);
+};
