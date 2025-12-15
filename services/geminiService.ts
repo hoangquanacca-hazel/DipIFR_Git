@@ -75,7 +75,7 @@ export const getGeminiResponse = async (userMessage: string, context?: UserConte
     });
 
    // Lấy dữ liệu thô từ AI
-    const rawText = response.text || "";
+    const rawText = response.text() || "";
     
     // BÓC VỎ: Xóa bỏ các ký tự ```json và ``` thừa thãi
     const cleanText = rawText.replace(/```json/g, '').replace(/```/g, '').trim();
