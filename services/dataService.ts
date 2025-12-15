@@ -2,7 +2,7 @@ import { Flashcard, QuizQuestion, PracticeQuestion, MockExamDef, Module, BloomLe
 
 // --- COMPREHENSIVE MOCK DATABASE FOR IAS STANDARDS ---
 
-const SAMPLE_FLASHCARDS_DB: Flashcard[] = [
+export const SAMPLE_FLASHCARDS_DB: Flashcard[] = [
   // --- IAS 1: Presentation of Financial Statements (m_ias1) ---
   { id: 'fc_ias1_01', moduleId: 'm_ias1', taxonomy: 'Remember', front: 'What comprises a complete set of financial statements?', back: 'SOFP, SPLOCI, SOCE, Cash Flows, Notes, Comparative info, and a 3rd SOFP (if retrospective application/restatement occurs).' },
   { id: 'fc_ias1_02', moduleId: 'm_ias1', taxonomy: 'Understand', front: 'What is the "Going Concern" assumption?', back: 'FS are prepared assuming the entity will continue in operation for at least 12 months. If not, must use break-up basis.' },
@@ -774,7 +774,7 @@ const SAMPLE_QUIZ_DB: QuizQuestion[] = [
   { id: 'q_ifrs17_10', moduleId: 'm_ifrs17', taxonomy: 'Evaluate', question: 'Variable Fee Approach applies to?', options: ['Term Life', 'Car Insurance', 'Unit-linked Contracts (Direct Participation)', 'Reinsurance'], correctAnswer: 2, explanation: 'Applies to insurance contracts with direct participation features where policyholders share in the returns of a pool of underlying items.' },
 ];
 
-const SAMPLE_PRACTICE_QUESTIONS: PracticeQuestion[] = [
+export const SAMPLE_PRACTICE_QUESTIONS: PracticeQuestion[] = [
   {
     id: 'pq_01',
     title: 'Gamma Co (IFRS 15)',
