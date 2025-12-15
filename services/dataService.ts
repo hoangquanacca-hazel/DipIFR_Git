@@ -843,17 +843,27 @@ const SAMPLE_MOCK_EXAMS: MockExamDef[] = [
   }
 ];
 
-export const dataService = {
-  getFlashcards: async (module: Module): Promise<Flashcard[]> => {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    return SAMPLE_FLASHCARDS_DB.filter(fc => fc.moduleId === module.id);
-  },
+// --- Tìm hàm getFlashcards và thay thế bằng đoạn này ---
+export const getFlashcards = (moduleId: string): Flashcard[] => {
+  console.log("🕵️ SOITIN: Đang tìm Flashcard cho ID:", moduleId);
+  
+  // Lọc dữ liệu
+  const results = SAMPLE_FLASHCARDS_DB.filter(item => item.moduleId === moduleId);
+  
+  console.log("🕵️ SOITIN: Kết quả tìm thấy:", results.length, "thẻ.");
+  return results;
+};
 
-  getQuiz: async (module: Module): Promise<QuizQuestion[]> => {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    return SAMPLE_QUIZ_DB.filter(q => q.moduleId === module.id);
-  },
-
+// --- Tìm hàm getQuizQuestions và thay thế bằng đoạn này ---
+export const getQuizQuestions = (moduleId: string): QuizQuestion[] => {
+  console.log("🕵️ SOITIN: Đang tìm Quiz cho ID:", moduleId);
+  
+  // Lọc dữ liệu
+  const results = SAMPLE_QUIZ_DB.filter(item => item.moduleId === moduleId);
+  
+  console.log("🕵️ SOITIN: Kết quả tìm thấy:", results.length, "câu.");
+  return results;
+};
   getPracticeQuestions: async (): Promise<PracticeQuestion[]> => {
     await new Promise(resolve => setTimeout(resolve, 300));
     return SAMPLE_PRACTICE_QUESTIONS;
