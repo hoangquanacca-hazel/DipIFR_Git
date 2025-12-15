@@ -872,3 +872,22 @@ export const getQuizQuestions = (moduleId: string): QuizQuestion[] => {
     return SAMPLE_MOCK_EXAMS;
   }
 };
+// --- BẮT BUỘC PHẢI CÓ ĐOẠN NÀY Ở CUỐI FILE ---
+
+export const getFlashcards = (moduleId: string): Flashcard[] => {
+  // Kiểm tra xem kho dữ liệu có tồn tại không
+  if (typeof SAMPLE_FLASHCARDS_DB === 'undefined') {
+    console.error("Lỗi: Không tìm thấy biến SAMPLE_FLASHCARDS_DB");
+    return [];
+  }
+  return SAMPLE_FLASHCARDS_DB.filter(item => item.moduleId === moduleId);
+};
+
+export const getQuizQuestions = (moduleId: string): QuizQuestion[] => {
+  // Kiểm tra xem kho dữ liệu có tồn tại không
+  if (typeof SAMPLE_QUIZ_DB === 'undefined') {
+    console.error("Lỗi: Không tìm thấy biến SAMPLE_QUIZ_DB");
+    return [];
+  }
+  return SAMPLE_QUIZ_DB.filter(item => item.moduleId === moduleId);
+};
