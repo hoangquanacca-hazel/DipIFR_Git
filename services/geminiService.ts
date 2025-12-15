@@ -13,7 +13,7 @@ export const getGeminiResponse = async (userMessage: string, context?: UserConte
   }
 
   try {
-    const model = 'gemini-2.5-flash';
+    const model = 'gemini-1.5-flash';
     
     // Construct a rich context string based on user stats
     const userContextStr = context 
