@@ -1,8 +1,18 @@
 import { GoogleGenAI } from "@google/genai";
 import { UserContext } from "../types";
 
-// API Key is now safely injected via vite.config.ts
+// --- ĐOẠN SƯ PHỤ CẦN SỬA ---
 const apiKey = import.meta.env.VITE_API_KEY;
+
+// Báo động: Kiểm tra xem chìa khóa có không?
+if (!apiKey) {
+  console.error("❌ MẤT CHÌA KHÓA: VITE_API_KEY không tìm thấy!");
+  // Dòng này sẽ hiện thông báo lên màn hình Sư phụ nếu mất khóa
+  alert("LỖI: Chưa nhận được API Key từ Vercel!");
+} else {
+  console.log("✅ ĐÃ CÓ CHÌA KHÓA:", apiKey);
+}
+// ---------------------------
 
 // Initialize AI instance (handle missing key gracefully to prevent crash on load)
 const ai = new GoogleGenAI({ apiKey: apiKey || 'missing-key' });
