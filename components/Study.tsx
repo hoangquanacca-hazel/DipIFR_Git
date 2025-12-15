@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { MODULES } from '../constants';
-// QUAN TRỌNG: Import trực tiếp dữ liệu, không dùng hàm getFlashcards nữa để tránh lỗi
+// --- SỬA QUAN TRỌNG: Import trực tiếp biến dữ liệu (Không dùng hàm get... nữa) ---
 import { SAMPLE_FLASHCARDS_DB, SAMPLE_QUIZ_DB } from '../services/dataService';
+// ---------------------------------------------------------------------------------
 import { ChevronRight, ChevronLeft, RotateCw, CheckCircle, XCircle, ArrowLeft, Filter, BookOpen, Loader2, Award } from 'lucide-react';
 import { Module, Flashcard, QuizQuestion, User } from '../types';
 
@@ -23,7 +24,6 @@ export const Study: React.FC<StudyProps> = ({ user, onUpdateProgress }) => {
   const [activeModule, setActiveModule] = useState<Module | null>(null);
   const [mode, setMode] = useState<'overview' | 'flashcards' | 'quiz'>('overview');
 
-  // Data States
   const [flashcards, setFlashcards] = useState<Flashcard[]>([]);
   const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>([]);
   const [loading, setLoading] = useState(false);
@@ -41,18 +41,17 @@ export const Study: React.FC<StudyProps> = ({ user, onUpdateProgress }) => {
         try {
           console.log("🚀 Study.tsx: Đang lấy dữ liệu trực tiếp cho", activeModule.id);
           
-          // --- CÁCH MỚI: Tự lọc dữ liệu ngay tại đây ---
-          // Kiểm tra an toàn
-          const allCards = (typeof SAMPLE_FLASHCARDS_DB !== 'undefined') ? SAMPLE_FLASHCARDS_DB : [];
-          const allQuiz = (typeof SAMPLE_QUIZ_DB !== 'undefined') ? SAMPLE_QUIZ_DB : [];
+          // --- LOGIC MỚI: Tự lọc dữ liệu từ biến nhập khẩu ---
+          // Kiểm tra an toàn xem biến có tồn tại không
+          const dbCards = (typeof SAMPLE_FLASHCARDS_DB !== 'undefined') ? SAMPLE_FLASHCARDS_DB : [];
+          const dbQuiz = (typeof SAMPLE_QUIZ_DB !== 'undefined') ? SAMPLE_QUIZ_DB : [];
 
-          const cards = allCards.filter(item => item.moduleId === activeModule.id);
-          const quiz = allQuiz.filter(item => item.moduleId === activeModule.id);
+          const cards = dbCards.filter(item => item.moduleId === activeModule.id);
+          const quiz = dbQuiz.filter(item => item.moduleId === activeModule.id);
           
-          console.log(`Tìm thấy: ${cards.length} thẻ và ${quiz.length} câu hỏi.`);
-
           setFlashcards(cards);
           setQuizQuestions(quiz);
+          // --------------------------------------------------
         } catch (error) {
           console.error("Failed to load module data:", error);
         } finally {
@@ -63,11 +62,9 @@ export const Study: React.FC<StudyProps> = ({ user, onUpdateProgress }) => {
     }
   }, [activeModule]);
 
-  // --- State cho Flashcards ---
+  // --- PHẦN GIAO DIỆN (GIỮ NGUYÊN) ---
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
-
-  // --- State cho Quiz ---
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
