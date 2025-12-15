@@ -843,25 +843,23 @@ const SAMPLE_MOCK_EXAMS: MockExamDef[] = [
   }
 ];
 
-// --- Tìm hàm getFlashcards và thay thế bằng đoạn này ---
+// --- DÁN ĐOẠN NÀY VÀO CUỐI FILE dataService.ts ---
+
 export const getFlashcards = (moduleId: string): Flashcard[] => {
-  console.log("🕵️ SOITIN: Đang tìm Flashcard cho ID:", moduleId);
+  // Kiểm tra an toàn xem biến có tồn tại không
+  if (typeof SAMPLE_FLASHCARDS_DB === 'undefined') return [];
   
-  // Lọc dữ liệu
   const results = SAMPLE_FLASHCARDS_DB.filter(item => item.moduleId === moduleId);
-  
-  console.log("🕵️ SOITIN: Kết quả tìm thấy:", results.length, "thẻ.");
+  console.log(`🕵️ Lấy Flashcard cho ${moduleId}: Tìm thấy ${results.length}`);
   return results;
 };
 
-// --- Tìm hàm getQuizQuestions và thay thế bằng đoạn này ---
 export const getQuizQuestions = (moduleId: string): QuizQuestion[] => {
-  console.log("🕵️ SOITIN: Đang tìm Quiz cho ID:", moduleId);
-  
-  // Lọc dữ liệu
+  // Kiểm tra an toàn
+  if (typeof SAMPLE_QUIZ_DB === 'undefined') return [];
+
   const results = SAMPLE_QUIZ_DB.filter(item => item.moduleId === moduleId);
-  
-  console.log("🕵️ SOITIN: Kết quả tìm thấy:", results.length, "câu.");
+  console.log(`🕵️ Lấy Quiz cho ${moduleId}: Tìm thấy ${results.length}`);
   return results;
 };
   getPracticeQuestions: async (): Promise<PracticeQuestion[]> => {
